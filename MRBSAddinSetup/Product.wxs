@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="MRBS Outlook Integration" Language="1033" Version="1.2.1.0" Manufacturer="Miller Johnson" UpgradeCode="38736C4B-B260-4A41-9470-C25CE9E126BF">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="MRBSAddinSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    <Property Id="CopyReg64Key" Value='"REG.EXE" COPY "HKLM\Software\WoW6432Node\Microsoft\Office\Outlook\Addins\MRBSOutlook" "HKLM\Software\Microsoft\Office\Outlook\Addins\MRBSOutlook" /s /f /reg:64' />
+    <CustomAction Id="CopyReg64Key" Execute="deferred" Return="ignore" Impersonate="no" BinaryKey="WixCA" DllEntry="CAQuietExec" />
+    <Property Id="DeleteReg64Key" Value='"REG.EXE" DELETE "HKLM\Software\Microsoft\Office\Outlook\Addins\MRBSOutlook" /f /reg:64' />
+    <CustomAction Id="DeleteReg64Key" Execute="deferred" Return="ignore" Impersonate="no" BinaryKey="WixCA" DllEntry="CAQuietExec" />
+    <InstallExecuteSequence>
+      <Custom Action="CopyReg64Key" Before="InstallFinalize">
+        <![CDATA[$VstoManifest=3]]>
+      </Custom>
+      <Custom Action="DeleteReg64Key" Before="RemoveFiles">
+        <![CDATA[$VstoManifest=2]]>
+      </Custom>
+    </InstallExecuteSequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="MillerJohnsonFolder" Name="Miller Johnson">
+				  <Directory Id="INSTALLFOLDER" Name="MRBS Outlook Integration" />
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="AddIn">
+        <File Id="AddInFile" Source="$(var.ConferenceRoomAddin.TargetPath)" KeyPath="yes"/>
+      </Component>
+      <Component Id="Config">
+        <File Id="ConfigFile" Source="$(var.ConferenceRoomAddin.TargetPath).config" KeyPath="yes"/>
+      </Component>
+      <Component Id="Manifest">
+        <File Id="ManifestFile" Source="$(var.ConferenceRoomAddin.TargetPath).manifest" KeyPath="yes"/>
+      </Component>
+      <Component Id="VstoManifest">
+        <File Id="VstoManifestFile" Source="$(var.ConferenceRoomAddin.TargetDir)$(var.ConferenceRoomAddin.TargetName).vsto" KeyPath="yes"/>
+        <RegistryKey Root="HKLM" Key="Software\Microsoft\Office\Outlook\Addins\MRBSOutlook">
+          <RegistryValue Name="Description" Value="MRBS Integration for Outlook appointments" Action="write" Type="string" />
+          <RegistryValue Name="FriendlyName" Value="MRBS For Outlook" Action="write" Type="string"/>
+          <RegistryValue Name="LoadBehavior" Value="3" Action="write" Type="integer"/>
+          <RegistryValue Name="Manifest" Value="[#VstoManifestFile]|vstolocal" Action="write" Type="string"/>
+        </RegistryKey>
+      </Component>
+      <Component Id="OfficeTools">
+        <File Id="OfficeToolsFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.dll" KeyPath="yes" />
+      </Component>
+       <Component Id="CommonTools">
+        <File Id="CommonToolsFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.Common.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="CommonUtilities">
+        <File Id="CommonUtilitiesFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.Common.v4.0.Utilities.dll" KeyPath="yes"/>
+      </Component>
+       <Component Id="OutlookTools">
+        <File Id="OutlookToolsFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.Outlook.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="OutlookUtilities">
+        <File Id="OutlookUtilitiesFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="FrameworkTools">
+        <File Id="FrameworkToolsFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.Office.Tools.v4.0.Framework.dll" KeyPath="yes" />
+      </Component>
+       <Component Id="ViusalStudioTools">
+        <File Id="VisualStudioToolsFile" Source="$(var.ConferenceRoomAddin.TargetDir)Microsoft.VisualStudio.Tools.Applications.Runtime.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="EntityFramework">
+        <File Id="EntityFrameworkFile" Source="$(var.ConferenceRoomAddin.TargetDir)EntityFramework.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="EntityFrameworkSQL">
+        <File Id="EntityFrameworkSQLFile" Source="$(var.ConferenceRoomAddin.TargetDir)EntityFramework.SqlServer.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="MJScheduling">
+        <File Id="MJSchedulingFile" Source="$(var.ConferenceRoomAddin.TargetDir)MJ.Scheduling.dll" KeyPath="yes"/>
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

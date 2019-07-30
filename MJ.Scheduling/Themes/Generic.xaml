@@ -1,0 +1,136 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MJ.Scheduling">
+    
+    <BooleanToVisibilityConverter x:Key="Bool2Vis"/>    
+    <Style TargetType="{x:Type local:AreaCalendarControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AreaCalendarControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <local:HeaderPanel Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <local:TimelinePanel Grid.Column="1" Grid.Row="0" Begins="{TemplateBinding CalendarBegins}" Ends="{TemplateBinding CalendarEnds}" ShowDate="{TemplateBinding ShowDate}"/>
+                            <ItemsControl Grid.Column="1" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="SlateGray" ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ItemsControl.ItemTemplate>
+                                    <ItemContainerTemplate>
+                                        <local:SchedulePanel Begins="{Binding StartTime}" Ends="{Binding EndTime}" ItemsSource="{Binding Appointments}"/>
+                                    </ItemContainerTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:HeaderPanel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:HeaderPanel}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:CalendarRoom}">
+                    <Border Height="30">
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:TimelinePanel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TimelinePanel}" x:Name="TimelineTemplate">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding Begins, RelativeSource={RelativeSource TemplatedParent}, StringFormat='D'}" FontWeight="SemiBold" Visibility="{Binding ShowDate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Bool2Vis}}"/>
+                            <UniformGrid x:Name="PART_Timeline"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:SchedulePanel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SchedulePanel}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <UniformGrid x:Name="PART_Timeline" Height="30"/>
+                            <local:SchedulePresenter Begins="{Binding StartTime}" Ends="{Binding EndTime}" IsItemsHost="True"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border x:Name="ApptBackground" BorderBrush="#5076A7" Background="#99cc66" BorderThickness="1,1,1,1" Margin="2,2,3,3">
+                        <!--<Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                <GradientStop Color="#99cc66" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.Background>-->
+                        <TextBlock FontWeight="Medium" FontSize="10" Padding="3,0,0,0" Text="{Binding Path=Description}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=BeverageService}" Value="True">
+                            <Setter Property="Background" TargetName="ApptBackground" Value="#b0e3ff">
+                                <!--<Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="#b0e3ff" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>-->
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=FoodService}" Value="True">
+                            <Setter Property="Background" TargetName="ApptBackground" Value="#ff7400">
+                                <!--<Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="#ff7400" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>-->
+                            </Setter>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

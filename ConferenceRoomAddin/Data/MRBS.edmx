@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MRBSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="mrbs_area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="disabled" Type="bit" Nullable="false" />
+          <Property Name="area_name" Type="varchar" MaxLength="30" />
+          <Property Name="timezone" Type="varchar" MaxLength="50" />
+          <Property Name="area_admin_email" Type="varchar(max)" Nullable="false" />
+          <Property Name="resolution" Type="int" />
+          <Property Name="default_duration" Type="int" />
+          <Property Name="default_duration_all_day" Type="bit" Nullable="false" />
+          <Property Name="morningstarts" Type="int" />
+          <Property Name="morningstarts_minutes" Type="int" />
+          <Property Name="eveningends" Type="int" />
+          <Property Name="eveningends_minutes" Type="int" />
+          <Property Name="private_enabled" Type="bit" />
+          <Property Name="private_default" Type="bit" />
+          <Property Name="private_mandatory" Type="bit" />
+          <Property Name="private_override" Type="varchar" MaxLength="32" />
+          <Property Name="min_create_ahead_enabled" Type="bit" />
+          <Property Name="min_create_ahead_secs" Type="int" />
+          <Property Name="max_create_ahead_enabled" Type="bit" />
+          <Property Name="max_create_ahead_secs" Type="int" />
+          <Property Name="min_delete_ahead_enabled" Type="bit" />
+          <Property Name="min_delete_ahead_secs" Type="int" />
+          <Property Name="max_delete_ahead_enabled" Type="bit" />
+          <Property Name="max_delete_ahead_secs" Type="int" />
+          <Property Name="max_per_day_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_per_day" Type="int" Nullable="false" />
+          <Property Name="max_per_week_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_per_week" Type="int" Nullable="false" />
+          <Property Name="max_per_month_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_per_month" Type="int" Nullable="false" />
+          <Property Name="max_per_year_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_per_year" Type="int" Nullable="false" />
+          <Property Name="max_per_future_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_per_future" Type="int" Nullable="false" />
+          <Property Name="custom_html" Type="varchar(max)" />
+          <Property Name="approval_enabled" Type="bit" />
+          <Property Name="reminders_enabled" Type="bit" />
+          <Property Name="enable_periods" Type="bit" />
+          <Property Name="confirmation_enabled" Type="bit" />
+          <Property Name="confirmed_default" Type="bit" />
+          <Property Name="allow_level" Type="smallint" />
+          <Property Name="max_duration_enabled" Type="bit" Nullable="false" />
+          <Property Name="max_duration_secs" Type="int" Nullable="false" />
+          <Property Name="max_duration_periods" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mrbs_entry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_time" Type="int" Nullable="false" />
+          <Property Name="end_time" Type="int" Nullable="false" />
+          <Property Name="entry_type" Type="int" Nullable="false" />
+          <Property Name="repeat_id" Type="int" />
+          <Property Name="room_id" Type="int" Nullable="false" />
+          <Property Name="timestamp" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="create_by" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="modified_by" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="reminded" Type="int" />
+          <Property Name="info_time" Type="int" />
+          <Property Name="info_user" Type="varchar" MaxLength="80" />
+          <Property Name="info_text" Type="varchar(max)" />
+          <Property Name="ical_uid" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ical_sequence" Type="smallint" Nullable="false" />
+          <Property Name="ical_recur_id" Type="varchar" MaxLength="16" />
+          <Property Name="coffee" Type="varchar" MaxLength="5" />
+          <Property Name="food_needed" Type="bit" />
+          <Property Name="catering" Type="varchar(max)" />
+          <Property Name="requestor" Type="varchar" MaxLength="50" />
+          <Property Name="room_layout_id" Type="int" />
+        </EntityType>
+        <EntityType Name="mrbs_repeat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_time" Type="int" Nullable="false" />
+          <Property Name="end_time" Type="int" Nullable="false" />
+          <Property Name="rep_type" Type="int" Nullable="false" />
+          <Property Name="end_date" Type="int" Nullable="false" />
+          <Property Name="rep_opt" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="room_id" Type="int" Nullable="false" />
+          <Property Name="timestamp" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="create_by" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="modified_by" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="rep_num_weeks" Type="smallint" />
+          <Property Name="month_absolute" Type="smallint" />
+          <Property Name="month_relative" Type="varchar" MaxLength="4" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="reminded" Type="int" />
+          <Property Name="info_time" Type="int" />
+          <Property Name="info_user" Type="varchar" MaxLength="80" />
+          <Property Name="info_text" Type="varchar(max)" />
+          <Property Name="ical_uid" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ical_sequence" Type="smallint" Nullable="false" />
+          <Property Name="computer" Type="bit" />
+          <Property Name="projector" Type="bit" />
+          <Property Name="coffee" Type="varchar" MaxLength="5" />
+          <Property Name="food_needed" Type="bit" />
+          <Property Name="catering" Type="varchar(max)" />
+          <Property Name="layout" Type="varchar(max)" />
+          <Property Name="requestor" Type="varchar" MaxLength="50" />
+          <Property Name="room_layout_id" Type="int" />
+        </EntityType>
+        <EntityType Name="mrbs_room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="disabled" Type="bit" Nullable="false" />
+          <Property Name="area_id" Type="int" Nullable="false" />
+          <Property Name="room_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="sort_key" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="60" />
+          <Property Name="capacity" Type="int" Nullable="false" />
+          <Property Name="room_admin_email" Type="varchar(max)" Nullable="false" />
+          <Property Name="custom_html" Type="varchar(max)" />
+          <Property Name="location" Type="varchar" MaxLength="10" />
+          <Property Name="technology" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="mrbs_room_layout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="room_id" Type="int" Nullable="false" />
+          <Property Name="layout_name" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="img_relative_url" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="thumb_img_relative_url" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="avail_chairs" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="avail_tables" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="sort_key" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mrbs_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="level" Type="smallint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="password_hash" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="75" />
+          <Property Name="location" Type="varchar" MaxLength="45" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="mj_staff_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_MRBS_ENTRY_REPEAT">
+          <End Role="mrbs_repeat" Type="Self.mrbs_repeat" Multiplicity="0..1" />
+          <End Role="mrbs_entry" Type="Self.mrbs_entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_repeat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="repeat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ENTRY_ROOM">
+          <End Role="mrbs_room" Type="Self.mrbs_room" Multiplicity="1" />
+          <End Role="mrbs_entry" Type="Self.mrbs_entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ENTRY_ROOM_LAYOUT">
+          <End Role="mrbs_room_layout" Type="Self.mrbs_room_layout" Multiplicity="0..1" />
+          <End Role="mrbs_entry" Type="Self.mrbs_entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room_layout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="room_layout_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_REPEAT_ROOM">
+          <End Role="mrbs_room" Type="Self.mrbs_room" Multiplicity="1" />
+          <End Role="mrbs_repeat" Type="Self.mrbs_repeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_repeat">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_REPEAT_ROOM_LAYOUT">
+          <End Role="mrbs_room_layout" Type="Self.mrbs_room_layout" Multiplicity="0..1" />
+          <End Role="mrbs_repeat" Type="Self.mrbs_repeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room_layout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_repeat">
+              <PropertyRef Name="room_layout_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ROOM_AREA">
+          <End Role="mrbs_area" Type="Self.mrbs_area" Multiplicity="1" />
+          <End Role="mrbs_room" Type="Self.mrbs_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_room">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MRBSModelStoreContainer">
+          <EntitySet Name="mrbs_area" EntityType="Self.mrbs_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mrbs_entry" EntityType="Self.mrbs_entry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mrbs_repeat" EntityType="Self.mrbs_repeat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mrbs_room" EntityType="Self.mrbs_room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mrbs_room_layout" EntityType="Self.mrbs_room_layout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mrbs_users" EntityType="Self.mrbs_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MRBS_ENTRY_REPEAT" Association="Self.FK_MRBS_ENTRY_REPEAT">
+            <End Role="mrbs_repeat" EntitySet="mrbs_repeat" />
+            <End Role="mrbs_entry" EntitySet="mrbs_entry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ENTRY_ROOM" Association="Self.FK_MRBS_ENTRY_ROOM">
+            <End Role="mrbs_room" EntitySet="mrbs_room" />
+            <End Role="mrbs_entry" EntitySet="mrbs_entry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ENTRY_ROOM_LAYOUT" Association="Self.FK_MRBS_ENTRY_ROOM_LAYOUT">
+            <End Role="mrbs_room_layout" EntitySet="mrbs_room_layout" />
+            <End Role="mrbs_entry" EntitySet="mrbs_entry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_REPEAT_ROOM" Association="Self.FK_MRBS_REPEAT_ROOM">
+            <End Role="mrbs_room" EntitySet="mrbs_room" />
+            <End Role="mrbs_repeat" EntitySet="mrbs_repeat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_REPEAT_ROOM_LAYOUT" Association="Self.FK_MRBS_REPEAT_ROOM_LAYOUT">
+            <End Role="mrbs_room_layout" EntitySet="mrbs_room_layout" />
+            <End Role="mrbs_repeat" EntitySet="mrbs_repeat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ROOM_AREA" Association="Self.FK_MRBS_ROOM_AREA">
+            <End Role="mrbs_area" EntitySet="mrbs_area" />
+            <End Role="mrbs_room" EntitySet="mrbs_room" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MRBSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="disabled" Type="Boolean" Nullable="false" />
+          <Property Name="area_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="timezone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="area_admin_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resolution" Type="Int32" />
+          <Property Name="default_duration" Type="Int32" />
+          <Property Name="default_duration_all_day" Type="Boolean" Nullable="false" />
+          <Property Name="morningstarts" Type="Int32" />
+          <Property Name="morningstarts_minutes" Type="Int32" />
+          <Property Name="eveningends" Type="Int32" />
+          <Property Name="eveningends_minutes" Type="Int32" />
+          <Property Name="private_enabled" Type="Boolean" />
+          <Property Name="private_default" Type="Boolean" />
+          <Property Name="private_mandatory" Type="Boolean" />
+          <Property Name="private_override" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="min_create_ahead_enabled" Type="Boolean" />
+          <Property Name="min_create_ahead_secs" Type="Int32" />
+          <Property Name="max_create_ahead_enabled" Type="Boolean" />
+          <Property Name="max_create_ahead_secs" Type="Int32" />
+          <Property Name="min_delete_ahead_enabled" Type="Boolean" />
+          <Property Name="min_delete_ahead_secs" Type="Int32" />
+          <Property Name="max_delete_ahead_enabled" Type="Boolean" />
+          <Property Name="max_delete_ahead_secs" Type="Int32" />
+          <Property Name="max_per_day_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_per_day" Type="Int32" Nullable="false" />
+          <Property Name="max_per_week_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_per_week" Type="Int32" Nullable="false" />
+          <Property Name="max_per_month_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_per_month" Type="Int32" Nullable="false" />
+          <Property Name="max_per_year_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_per_year" Type="Int32" Nullable="false" />
+          <Property Name="max_per_future_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_per_future" Type="Int32" Nullable="false" />
+          <Property Name="custom_html" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="approval_enabled" Type="Boolean" />
+          <Property Name="reminders_enabled" Type="Boolean" />
+          <Property Name="enable_periods" Type="Boolean" />
+          <Property Name="confirmation_enabled" Type="Boolean" />
+          <Property Name="confirmed_default" Type="Boolean" />
+          <Property Name="allow_level" Type="Int16" />
+          <Property Name="max_duration_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="max_duration_secs" Type="Int32" Nullable="false" />
+          <Property Name="max_duration_periods" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_MRBS_ROOM_AREA" FromRole="mrbs_area" ToRole="mrbs_room" />
+        </EntityType>
+        <EntityType Name="Entry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_time" Type="Int32" Nullable="false" />
+          <Property Name="end_time" Type="Int32" Nullable="false" />
+          <Property Name="entry_type" Type="Int32" Nullable="false" />
+          <Property Name="repeat_id" Type="Int32" />
+          <Property Name="room_id" Type="Int32" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="create_by" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified_by" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="reminded" Type="Int32" />
+          <Property Name="info_time" Type="Int32" />
+          <Property Name="info_user" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="info_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ical_uid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ical_sequence" Type="Int16" Nullable="false" />
+          <Property Name="ical_recur_id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="coffee" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="food_needed" Type="Boolean" />
+          <Property Name="catering" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="requestor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="room_layout_id" Type="Int32" />
+          <NavigationProperty Name="Repeat" Relationship="Self.FK_MRBS_ENTRY_REPEAT" FromRole="mrbs_entry" ToRole="mrbs_repeat" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_MRBS_ENTRY_ROOM" FromRole="mrbs_entry" ToRole="mrbs_room" />
+          <NavigationProperty Name="RoomLayout" Relationship="Self.FK_MRBS_ENTRY_ROOM_LAYOUT" FromRole="mrbs_entry" ToRole="mrbs_room_layout" />
+        </EntityType>
+        <EntityType Name="Repeat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_time" Type="Int32" Nullable="false" />
+          <Property Name="end_time" Type="Int32" Nullable="false" />
+          <Property Name="rep_type" Type="Int32" Nullable="false" />
+          <Property Name="end_date" Type="Int32" Nullable="false" />
+          <Property Name="rep_opt" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="room_id" Type="Int32" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="create_by" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified_by" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rep_num_weeks" Type="Int16" />
+          <Property Name="month_absolute" Type="Int16" />
+          <Property Name="month_relative" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="reminded" Type="Int32" />
+          <Property Name="info_time" Type="Int32" />
+          <Property Name="info_user" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="info_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ical_uid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ical_sequence" Type="Int16" Nullable="false" />
+          <Property Name="computer" Type="Boolean" />
+          <Property Name="projector" Type="Boolean" />
+          <Property Name="coffee" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="food_needed" Type="Boolean" />
+          <Property Name="catering" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="layout" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="requestor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="room_layout_id" Type="Int32" />
+          <NavigationProperty Name="Entries" Relationship="Self.FK_MRBS_ENTRY_REPEAT" FromRole="mrbs_repeat" ToRole="mrbs_entry" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_MRBS_REPEAT_ROOM" FromRole="mrbs_repeat" ToRole="mrbs_room" />
+          <NavigationProperty Name="RoomLayout" Relationship="Self.FK_MRBS_REPEAT_ROOM_LAYOUT" FromRole="mrbs_repeat" ToRole="mrbs_room_layout" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="disabled" Type="Boolean" Nullable="false" />
+          <Property Name="area_id" Type="Int32" Nullable="false" />
+          <Property Name="room_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sort_key" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="capacity" Type="Int32" Nullable="false" />
+          <Property Name="room_admin_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="custom_html" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="technology" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_MRBS_ROOM_AREA" FromRole="mrbs_room" ToRole="mrbs_area" />
+          <NavigationProperty Name="Entries" Relationship="Self.FK_MRBS_ENTRY_ROOM" FromRole="mrbs_room" ToRole="mrbs_entry" />
+          <NavigationProperty Name="Repeats" Relationship="Self.FK_MRBS_REPEAT_ROOM" FromRole="mrbs_room" ToRole="mrbs_repeat" />
+        </EntityType>
+        <EntityType Name="RoomLayout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="room_id" Type="Int32" Nullable="false" />
+          <Property Name="layout_name" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="img_relative_url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumb_img_relative_url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="avail_chairs" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="avail_tables" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sort_key" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Entry" Relationship="Self.FK_MRBS_ENTRY_ROOM_LAYOUT" FromRole="mrbs_room_layout" ToRole="mrbs_entry" />
+          <NavigationProperty Name="Repeat" Relationship="Self.FK_MRBS_REPEAT_ROOM_LAYOUT" FromRole="mrbs_room_layout" ToRole="mrbs_repeat" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="level" Type="Int16" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="password_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="mj_staff_id" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_MRBS_ROOM_AREA">
+          <End Role="mrbs_area" Type="MRBSModel.Area" Multiplicity="1" />
+          <End Role="mrbs_room" Type="MRBSModel.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_room">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ENTRY_REPEAT">
+          <End Role="mrbs_repeat" Type="MRBSModel.Repeat" Multiplicity="0..1" />
+          <End Role="mrbs_entry" Type="MRBSModel.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_repeat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="repeat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ENTRY_ROOM">
+          <End Role="mrbs_room" Type="MRBSModel.Room" Multiplicity="1" />
+          <End Role="mrbs_entry" Type="MRBSModel.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_ENTRY_ROOM_LAYOUT">
+          <End Role="mrbs_room_layout" Type="MRBSModel.RoomLayout" Multiplicity="0..1" />
+          <End Role="mrbs_entry" Type="MRBSModel.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room_layout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_entry">
+              <PropertyRef Name="room_layout_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_REPEAT_ROOM">
+          <End Role="mrbs_room" Type="MRBSModel.Room" Multiplicity="1" />
+          <End Role="mrbs_repeat" Type="MRBSModel.Repeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_repeat">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MRBS_REPEAT_ROOM_LAYOUT">
+          <End Role="mrbs_room_layout" Type="MRBSModel.RoomLayout" Multiplicity="0..1" />
+          <End Role="mrbs_repeat" Type="MRBSModel.Repeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mrbs_room_layout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mrbs_repeat">
+              <PropertyRef Name="room_layout_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MRBSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="MRBSModel.Area" />
+          <EntitySet Name="Entries" EntityType="MRBSModel.Entry" />
+          <EntitySet Name="Repeats" EntityType="MRBSModel.Repeat" />
+          <EntitySet Name="Rooms" EntityType="MRBSModel.Room" />
+          <EntitySet Name="RoomLayouts" EntityType="MRBSModel.RoomLayout" />
+          <EntitySet Name="Users" EntityType="MRBSModel.User" />
+          <AssociationSet Name="FK_MRBS_ROOM_AREA" Association="Self.FK_MRBS_ROOM_AREA">
+            <End Role="mrbs_area" EntitySet="Areas" />
+            <End Role="mrbs_room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ENTRY_REPEAT" Association="Self.FK_MRBS_ENTRY_REPEAT">
+            <End Role="mrbs_repeat" EntitySet="Repeats" />
+            <End Role="mrbs_entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ENTRY_ROOM" Association="Self.FK_MRBS_ENTRY_ROOM">
+            <End Role="mrbs_room" EntitySet="Rooms" />
+            <End Role="mrbs_entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_ENTRY_ROOM_LAYOUT" Association="Self.FK_MRBS_ENTRY_ROOM_LAYOUT">
+            <End Role="mrbs_room_layout" EntitySet="RoomLayouts" />
+            <End Role="mrbs_entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_REPEAT_ROOM" Association="Self.FK_MRBS_REPEAT_ROOM">
+            <End Role="mrbs_room" EntitySet="Rooms" />
+            <End Role="mrbs_repeat" EntitySet="Repeats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MRBS_REPEAT_ROOM_LAYOUT" Association="Self.FK_MRBS_REPEAT_ROOM_LAYOUT">
+            <End Role="mrbs_room_layout" EntitySet="RoomLayouts" />
+            <End Role="mrbs_repeat" EntitySet="Repeats" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MRBSModelStoreContainer" CdmEntityContainer="MRBSEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="MRBSModel.Area">
+              <MappingFragment StoreEntitySet="mrbs_area">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="disabled" ColumnName="disabled" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="timezone" ColumnName="timezone" />
+                <ScalarProperty Name="area_admin_email" ColumnName="area_admin_email" />
+                <ScalarProperty Name="resolution" ColumnName="resolution" />
+                <ScalarProperty Name="default_duration" ColumnName="default_duration" />
+                <ScalarProperty Name="default_duration_all_day" ColumnName="default_duration_all_day" />
+                <ScalarProperty Name="morningstarts" ColumnName="morningstarts" />
+                <ScalarProperty Name="morningstarts_minutes" ColumnName="morningstarts_minutes" />
+                <ScalarProperty Name="eveningends" ColumnName="eveningends" />
+                <ScalarProperty Name="eveningends_minutes" ColumnName="eveningends_minutes" />
+                <ScalarProperty Name="private_enabled" ColumnName="private_enabled" />
+                <ScalarProperty Name="private_default" ColumnName="private_default" />
+                <ScalarProperty Name="private_mandatory" ColumnName="private_mandatory" />
+                <ScalarProperty Name="private_override" ColumnName="private_override" />
+                <ScalarProperty Name="min_create_ahead_enabled" ColumnName="min_create_ahead_enabled" />
+                <ScalarProperty Name="min_create_ahead_secs" ColumnName="min_create_ahead_secs" />
+                <ScalarProperty Name="max_create_ahead_enabled" ColumnName="max_create_ahead_enabled" />
+                <ScalarProperty Name="max_create_ahead_secs" ColumnName="max_create_ahead_secs" />
+                <ScalarProperty Name="min_delete_ahead_enabled" ColumnName="min_delete_ahead_enabled" />
+                <ScalarProperty Name="min_delete_ahead_secs" ColumnName="min_delete_ahead_secs" />
+                <ScalarProperty Name="max_delete_ahead_enabled" ColumnName="max_delete_ahead_enabled" />
+                <ScalarProperty Name="max_delete_ahead_secs" ColumnName="max_delete_ahead_secs" />
+                <ScalarProperty Name="max_per_day_enabled" ColumnName="max_per_day_enabled" />
+                <ScalarProperty Name="max_per_day" ColumnName="max_per_day" />
+                <ScalarProperty Name="max_per_week_enabled" ColumnName="max_per_week_enabled" />
+                <ScalarProperty Name="max_per_week" ColumnName="max_per_week" />
+                <ScalarProperty Name="max_per_month_enabled" ColumnName="max_per_month_enabled" />
+                <ScalarProperty Name="max_per_month" ColumnName="max_per_month" />
+                <ScalarProperty Name="max_per_year_enabled" ColumnName="max_per_year_enabled" />
+                <ScalarProperty Name="max_per_year" ColumnName="max_per_year" />
+                <ScalarProperty Name="max_per_future_enabled" ColumnName="max_per_future_enabled" />
+                <ScalarProperty Name="max_per_future" ColumnName="max_per_future" />
+                <ScalarProperty Name="custom_html" ColumnName="custom_html" />
+                <ScalarProperty Name="approval_enabled" ColumnName="approval_enabled" />
+                <ScalarProperty Name="reminders_enabled" ColumnName="reminders_enabled" />
+                <ScalarProperty Name="enable_periods" ColumnName="enable_periods" />
+                <ScalarProperty Name="confirmation_enabled" ColumnName="confirmation_enabled" />
+                <ScalarProperty Name="confirmed_default" ColumnName="confirmed_default" />
+                <ScalarProperty Name="allow_level" ColumnName="allow_level" />
+                <ScalarProperty Name="max_duration_enabled" ColumnName="max_duration_enabled" />
+                <ScalarProperty Name="max_duration_secs" ColumnName="max_duration_secs" />
+                <ScalarProperty Name="max_duration_periods" ColumnName="max_duration_periods" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entries">
+            <EntityTypeMapping TypeName="MRBSModel.Entry">
+              <MappingFragment StoreEntitySet="mrbs_entry">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="entry_type" ColumnName="entry_type" />
+                <ScalarProperty Name="repeat_id" ColumnName="repeat_id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="reminded" ColumnName="reminded" />
+                <ScalarProperty Name="info_time" ColumnName="info_time" />
+                <ScalarProperty Name="info_user" ColumnName="info_user" />
+                <ScalarProperty Name="info_text" ColumnName="info_text" />
+                <ScalarProperty Name="ical_uid" ColumnName="ical_uid" />
+                <ScalarProperty Name="ical_sequence" ColumnName="ical_sequence" />
+                <ScalarProperty Name="ical_recur_id" ColumnName="ical_recur_id" />
+                <ScalarProperty Name="coffee" ColumnName="coffee" />
+                <ScalarProperty Name="food_needed" ColumnName="food_needed" />
+                <ScalarProperty Name="catering" ColumnName="catering" />
+                <ScalarProperty Name="requestor" ColumnName="requestor" />
+                <ScalarProperty Name="room_layout_id" ColumnName="room_layout_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repeats">
+            <EntityTypeMapping TypeName="MRBSModel.Repeat">
+              <MappingFragment StoreEntitySet="mrbs_repeat">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="rep_type" ColumnName="rep_type" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="rep_opt" ColumnName="rep_opt" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="rep_num_weeks" ColumnName="rep_num_weeks" />
+                <ScalarProperty Name="month_absolute" ColumnName="month_absolute" />
+                <ScalarProperty Name="month_relative" ColumnName="month_relative" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="reminded" ColumnName="reminded" />
+                <ScalarProperty Name="info_time" ColumnName="info_time" />
+                <ScalarProperty Name="info_user" ColumnName="info_user" />
+                <ScalarProperty Name="info_text" ColumnName="info_text" />
+                <ScalarProperty Name="ical_uid" ColumnName="ical_uid" />
+                <ScalarProperty Name="ical_sequence" ColumnName="ical_sequence" />
+                <ScalarProperty Name="computer" ColumnName="computer" />
+                <ScalarProperty Name="projector" ColumnName="projector" />
+                <ScalarProperty Name="coffee" ColumnName="coffee" />
+                <ScalarProperty Name="food_needed" ColumnName="food_needed" />
+                <ScalarProperty Name="catering" ColumnName="catering" />
+                <ScalarProperty Name="layout" ColumnName="layout" />
+                <ScalarProperty Name="requestor" ColumnName="requestor" />
+                <ScalarProperty Name="room_layout_id" ColumnName="room_layout_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="MRBSModel.Room">
+              <MappingFragment StoreEntitySet="mrbs_room">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="disabled" ColumnName="disabled" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="room_name" ColumnName="room_name" />
+                <ScalarProperty Name="sort_key" ColumnName="sort_key" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="room_admin_email" ColumnName="room_admin_email" />
+                <ScalarProperty Name="custom_html" ColumnName="custom_html" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="technology" ColumnName="technology" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomLayouts">
+            <EntityTypeMapping TypeName="MRBSModel.RoomLayout">
+              <MappingFragment StoreEntitySet="mrbs_room_layout">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="layout_name" ColumnName="layout_name" />
+                <ScalarProperty Name="img_relative_url" ColumnName="img_relative_url" />
+                <ScalarProperty Name="thumb_img_relative_url" ColumnName="thumb_img_relative_url" />
+                <ScalarProperty Name="avail_chairs" ColumnName="avail_chairs" />
+                <ScalarProperty Name="avail_tables" ColumnName="avail_tables" />
+                <ScalarProperty Name="sort_key" ColumnName="sort_key" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MRBSModel.User">
+              <MappingFragment StoreEntitySet="mrbs_users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="mj_staff_id" ColumnName="mj_staff_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
